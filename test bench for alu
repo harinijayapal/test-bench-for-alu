@@ -1,0 +1,37 @@
+module ALU_TEST;
+	// Inputs
+	reg [7:0] A;
+	reg [7:0] B;
+	reg [3:0] alusel;
+	// Outputs
+	wire [7:0] aluout;
+	wire carryout;
+	// Instantiate the Unit Under Test (UUT)
+	mad uut (
+		.A(A), 
+		.B(B), 
+		.aluout(aluout), 
+		.carryout(carryout), 
+		.alusel(alusel)
+	);
+	initial begin
+		// Initialize Inputs
+		A = 0;
+		B = 0;
+		alusel = 0;
+
+		// Wait 100 ns for global reset to finish
+		#100;
+      		A = 01;
+		B = 10;
+		alusel = 4'b0000;
+		#100;
+      		A = 11;
+		B = 00;
+		alusel = 4'b0001;
+		#100;
+      		A = 01;
+		B = 01;
+		alusel = 4'b1010;
+	end 
+     endmodule
